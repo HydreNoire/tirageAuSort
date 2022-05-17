@@ -11,5 +11,22 @@ function addNameList() {
     listName.appendChild(itemName);
     itemName.innerText = namee.value;
 
-    console.log(tabName);
+    // console.log(tabName);
+    // console.log(itemName.innerText)
+}
+
+// ======================= Ajout aléatoire de groupes =======================//
+let inputNumber = document.getElementById('nb-groupe');
+let listGroup = document.getElementById('liste-groupe');
+
+document.getElementById('btn-groupe').addEventListener('click', getGroup)
+
+function getGroup() {
+    for (let i = 0; i < tabName.length; i++) {
+        let randomNumber = Math.floor(Math.random() * tabName.length)
+        let itemGroup = document.createElement('div');
+        listGroup.appendChild(itemGroup);
+        itemGroup.innerText = tabName[randomNumber];
+    }
+
 }
