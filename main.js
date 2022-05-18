@@ -7,26 +7,32 @@ document.getElementById('ajout-liste').addEventListener('click', addNameList);
 
 function addNameList() {
     tabName.push(namee.value);
+    console.log(namee.value);
     let itemName = document.createElement('li');
     listName.appendChild(itemName);
     itemName.innerText = namee.value;
+    console.log(tabName)
 
-    // console.log(tabName);
-    // console.log(itemName.innerText)
+    return namee.value = "";
 }
 
 // ======================= Ajout aléatoire de groupes =======================//
 let inputNumber = document.getElementById('nb-groupe');
 let listGroup = document.getElementById('liste-groupe');
 
+function shuffle(array) {
+    array.sort(() => Math.random() - 0.5);
+}
+
 document.getElementById('btn-groupe').addEventListener('click', getGroup)
 
 function getGroup() {
-    for (let i = 0; i < tabName.length; i++) {
-        let randomNumber = Math.floor(Math.random() * tabName.length)
-        let itemGroup = document.createElement('div');
-        listGroup.appendChild(itemGroup);
-        itemGroup.innerText = tabName[randomNumber];
-    }
+    const tabBis = tabName;
+    // console.log(shuffle(tabBis))
 
+    do {
+        let itemName = document.createElement('li');
+        listGroup.appendChild(itemName);
+        itemName.innerText = tabBis.splice(0, 2);
+    } while (tabBis.length > 0);
 }
