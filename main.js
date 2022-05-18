@@ -1,9 +1,8 @@
 let tabName = [];
-let namee = document.getElementById('nom-input');
+let namee = document.getElementById('nom-input')
 let listName = document.getElementById('liste-ajout');
+let i = 0;
 
-// ======================= Ajout des noms dans une liste =======================//
-document.getElementById('ajout-liste').addEventListener('click', addNameList);
 
 function addNameList() {
     tabName.push(namee.value);
