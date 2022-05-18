@@ -20,19 +20,25 @@ function addNameList() {
 let inputNumber = document.getElementById('nb-groupe');
 let listGroup = document.getElementById('liste-groupe');
 
-function shuffle(array) {
-    array.sort(() => Math.random() - 0.5);
-}
-
 document.getElementById('btn-groupe').addEventListener('click', getGroup)
+
+function shuffleArray(arr) {
+    arr.sort(() => Math.random() - 0.5);
+}
 
 function getGroup() {
     const tabBis = tabName;
-    // console.log(shuffle(tabBis))
+    shuffleArray(tabBis);
+    console.log(tabBis.join(' '));
+
+    if (!inputNumber.value) {
+        return alert('Combien de personnes par groupe veux-tu ?')
+    }
 
     do {
         let itemName = document.createElement('li');
         listGroup.appendChild(itemName);
-        itemName.innerText = tabBis.splice(0, 2);
+        itemName.innerText = tabBis.splice(0, inputNumber.value).join(', ');
     } while (tabBis.length > 0);
+
 }
