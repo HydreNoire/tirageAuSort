@@ -1,2 +1,7 @@
 @import 'martial.css';
 @import 'lise.css';
+
+li:hover {
+    background-color: grey;
+    cursor: pointer;
+}
