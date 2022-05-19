@@ -5,7 +5,7 @@ let i = 0;
 
 
 addName = document.getElementById('ajout-liste').addEventListener('click', addNameListWithClick)
-    //   namee.addEventListener('keypress', addNameList)
+//   namee.addEventListener('keypress', addNameList)
 
 function addNameListWithClick() {
 
@@ -43,54 +43,26 @@ function addNameListWithKeyboard(input) {
         let itemName = document.createElement('li');
         listName.appendChild(itemName);
         itemName.innerText = namee.value
-        namee.value == '';
+        //namee.value == '';
         //   console.log(tabName);
         //   console.log(itemName.innerText)
         return namee.value = ''
-
-
     }
+}
 
-
+function shuffleArray(arr) {
+    arr.sort(() => Math.random() - 0.5);
 }
 
 // ======================= Ajout aléatoire de groupes =======================//
 let inputNumber = document.getElementById('nb-groupe');
 let listGroup = document.getElementById('liste-groupe');
 
-document.getElementById('btn-groupe').addEventListener('click', getGroup)
-document.getElementById('btn-aleatoire').addEventListener('click', getRandomName)
-
-function shuffleArray(arr) {
-    arr.sort(() => Math.random() - 0.5);
-}
-
-
-
-function getRandomName() {
-    let listRandomName = document.getElementById('liste-aleatoire');
-    let randomTab = tabName;
-    shuffleArray(tabName)
-    for (i = 0; i < tabName.length; i++) {
-
-        let randomName = document.createElement('li');
-        listRandomName.appendChild(randomName);
-        randomName.innerText = tabName[i]
-    }
-    randomTab.splice(0, tabName.length)
-
-    console.log(randomTab + "Duplicata")
-    console.log(tabName + 'TabName')
-
-
-    //   console.log(shuffle(tabName[i]))
-}
+document.getElementById('btn-groupe').addEventListener('click', getGroup);
 
 function getGroup() {
-    const tabBis = tabName;
+    let tabBis = Object.values(tabName);
     shuffleArray(tabBis);
-    // console.log(tabBis);
-    // console.log(tabName);
 
     if (!inputNumber.value) {
         return alert('Combien de personnes par groupe veux-tu ?')
@@ -112,9 +84,54 @@ function getGroup() {
         itemName.innerText = tabBis.splice(0, inputNumber.value).join(', ');
     } while (tabBis.length > 0);
 
+    // console.log(tabName);
+    // console.log(tabBis[1]);
+}
 
-    // function shuffleArray(array) {
-    //     array.sort(() => Math.random() - 0.5)
-    // }
+inputNumber.addEventListener('keypress', getGroupkeyboard);
 
+function getGroupkeyboard(input) {
+    if (input.keyCode == 13) {
+        let tabBis = Object.values(tabName);
+        shuffleArray(tabBis);
+
+        if (!inputNumber.value) {
+            return alert('Combien de personnes par groupe veux-tu ?')
+        }
+
+        if (!tabBis.length) {
+            return alert('Les groupes sont faits')
+        }
+
+        if (tabBis.length % 2 != 0) {
+            let itemName = document.createElement('li');
+            listGroup.appendChild(itemName);
+            itemName.innerText = tabBis.splice(tabBis.length - inputNumber.value).concat(tabBis.splice(-1));
+        }
+
+        do {
+            let itemName = document.createElement('li');
+            listGroup.appendChild(itemName);
+            itemName.innerText = tabBis.splice(0, inputNumber.value).join(', ');
+        } while (tabBis.length > 0);
+    }
+}
+
+// ======================= Ajout liste aléatoire =======================//
+document.getElementById('btn-aleatoire').addEventListener('click', getRandomName)
+
+function getRandomName() {
+    let listRandomName = document.getElementById('liste-aleatoire');
+    let randomTab = Object.values(tabName);
+    shuffleArray(tabName)
+    for (i = 0; i < tabName.length; i++) {
+
+        let randomName = document.createElement('li');
+        listRandomName.appendChild(randomName);
+        randomName.innerText = tabName[i]
+    }
+    randomTab.splice(0, randomTab.length)
+
+    console.log(typeof randomTab)
+    console.log(tabName)
 }
