@@ -119,19 +119,27 @@ function getGroupkeyboard(input) {
 
 // ======================= Ajout liste aléatoire =======================//
 document.getElementById('btn-aleatoire').addEventListener('click', getRandomName)
+let listRandomName = document.getElementById('liste-aleatoire');
 
 function getRandomName() {
-    let listRandomName = document.getElementById('liste-aleatoire');
     let randomTab = Object.values(tabName);
-    shuffleArray(tabName)
-    for (i = 0; i < tabName.length; i++) {
+    shuffleArray(tabName);
 
+    if (listRandomName.hasChildNodes()) {
+        alert('Tu as déjà fait ton tri')
+
+    };
+
+    for (i = 0; i < tabName.length; i++) {
         let randomName = document.createElement('li');
+        randomName.classList.add('nom');
         listRandomName.appendChild(randomName);
-        randomName.innerText = tabName[i]
+        randomName.innerText = tabName[i];
     }
     randomTab.splice(0, randomTab.length)
 
-    console.log(typeof randomTab)
-    console.log(tabName)
+    // console.log(randomTab)
+    // console.log(tabName)
 }
+
+// document.querySelectorAll('nom').innerText = tabName[i]
