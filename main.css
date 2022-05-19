@@ -1,7 +1,81 @@
-@import 'martial.css';
-@import 'lise.css';
-
-li:hover {
-    background-color: grey;
-    cursor: pointer;
-}
+    @import 'martial.css';
+    @import 'lise.css';
+    * {
+        font-family: Helvetica, sans-serif;
+    }
+    
+    body {
+        --blueColor: #440bfa;
+        position: relative;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow: hidden;
+    }
+    /* Lightbox pop-up */
+    
+    #lightbox {
+        height: 100vh;
+        position: absolute;
+        width: 100vw;
+        top: 0;
+        display: none;
+    }
+    
+    #popup {
+        width: 30%;
+        height: 40%;
+        background-color: var(--blueColor);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    h4 {
+        text-align: center;
+        font-weight: 200;
+    }
+    
+    #popup button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        opacity: 0.9;
+    }
+    
+    .d-none {
+        display: none;
+    }
+    
+    .d-block {
+        display: block;
+    }
+    
+    #nb-groupe {
+        background-color: transparent;
+        border: 1px solid white;
+        padding: 1em 1.5em;
+        color: white;
+        font-size: 20px;
+    }
+    
+    #nb-groupe:focus {
+        outline: none;
+    }
+    
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    
+    input[type=number] {
+        -moz-appearance: textfield;
+        /* Firefox */
+    }

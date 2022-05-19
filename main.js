@@ -20,7 +20,7 @@ function addName() {
     listName.appendChild(itemName);
     itemName.innerText = namee.value;
 
-    itemName.addEventListener('click', function () {
+    itemName.addEventListener('click', function() {
         this.remove()
         for (const key in tabBase) {
             if (tabBase.hasOwnProperty(key)) {
