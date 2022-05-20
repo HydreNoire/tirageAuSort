@@ -25,13 +25,10 @@ h1 {
     margin: 1rem;
 }
 
-.ajout,
-.list-random-group {
-    width: 55%;
-}
-
 .ajout {
+    width: 55%;
     padding-bottom: 1rem;
+    padding-right: 8rem;
 }
 
 .ajout-nom {
@@ -97,12 +94,20 @@ h1 {
     transform: rotate(45deg);
     font-weight: 600;
     position: absolute;
-    right: 17px;
+    right: 25px;
 }
 
 .list-random-group {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+}
+
+.btn-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
 }
 
 #btn-aleatoire,
@@ -122,18 +127,86 @@ h1 {
     background-color: var(--blueColor);
 }
 
-.groupList {
+#btn-aleatoire:disabled,
+#btn-groupe:disabled {
+    opacity: 0.5;
+}
+
+#btn-aleatoire:disabled:hover,
+#btn-groupe:disabled:hover {
     color: var(--blueColor);
-}
-
-.groupList::marker {
-    content: '$';
+    background-color: transparent;
 }
 
 
-/* Ce que je ne veux pas voir */
+/* LISTE ALEATOIRE */
+
+.list-random-group {
+    width: 100%;
+}
+
+#liste-aleatoire {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 89vw;
+    max-height: 500px;
+    list-style: none;
+}
+
+.groupList {
+    margin-right: 2.3rem;
+    border: 1px solid var(--blueColor);
+    font-size: 1.3rem;
+    color: var(--blueColor);
+    padding: 1.5rem 1rem;
+    width: 46%;
+}
+
+.groupList:first-child {
+    background-image: url(one.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+    background-size: 7%;
+}
+
+.groupList:nth-child(2) {
+    background-image: url(two.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+    background-size: 7%;
+}
+
+.groupList:nth-child(3) {
+    background-image: url(three.svg);
+    background-repeat: no-repeat;
+    background-position: 95%;
+    background-size: 7%;
+}
 
 
-/* #nb-groupe {
-    display: none;
-} */
+/* LISTE GROUPE */
+
+#liste-groupe {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 89vw;
+    max-height: fit-content;
+    list-style: none;
+}
+
+.groupLi {
+    margin: 1rem;
+    padding: 1.5rem 2rem;
+    width: 350px;
+    min-height: 100px;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 700;
+    border: 1px solid var(--blueColor);
+    color: var(--blueColor);
+    display: flex;
+    align-items: center;
+}

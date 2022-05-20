@@ -212,4 +212,6 @@ function getRandomName() {
         randomName.innerText = tabBase[i];
     }
     randomTab.splice(0, randomTab.length)
+
+    document.getElementById("btn-aleatoire").setAttribute('disabled', 'disabled');
 }
