@@ -15,7 +15,6 @@ main {
     justify-content: space-around;
     align-items: end;
     flex-basis: 75%;
-    padding-right: 15rem;
 }
 
 h1 {
@@ -107,7 +106,7 @@ h1 {
 }
 
 #btn-aleatoire,
-#btn-groupe {
+#btn-display-lightbox {
     padding: 1.5rem 2rem;
     background-color: transparent;
     border: 1px solid var(--blueColor);
@@ -117,8 +116,8 @@ h1 {
     cursor: pointer;
 }
 
-#btn-aleatoire:hover,
-#btn-groupe:hover {
+#btn-aleatoire:hover {
+    /* #btn-groupe:hover { */
     color: white;
     background-color: var(--blueColor);
 }
@@ -131,7 +130,10 @@ h1 {
     content: '$';
 }
 
+
 /* Ce que je ne veux pas voir */
-#nb-groupe {
+
+
+/* #nb-groupe {
     display: none;
-}
+} */

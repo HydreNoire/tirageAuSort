@@ -19,6 +19,8 @@
         width: 100vw;
         top: 0;
         display: none;
+        z-index: 5;
+        backdrop-filter: blur(4px);
     }
     
     #popup {

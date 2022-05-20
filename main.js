@@ -1,11 +1,118 @@
 let tabBase = [];
-let namee = document.getElementById('nom-input')
-let listName = document.getElementById('liste-ajout');
+// let namee = document.getElementById('nom-input')
+// let listName = document.getElementById('liste-ajout');
 let i = 0;
+let mainContent = document.getElementById('main-content')
 
-document.getElementById('ajout-liste').addEventListener('click', addName)
 
-function addName() {
+// AddName //
+window.addEventListener("DOMContentLoaded", () => {
+    fetch('addName.html')
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(html) {
+            let mainContent = document.getElementById('main-content')
+            mainContent.innerHTML = html.toString();
+            let addToList = document.getElementById('ajout-liste')
+            let namee = document.getElementById('nom-input')
+            let listName = document.getElementById('liste-ajout');
+            addToList.addEventListener('click', function() {
+                addName(namee)
+            })
+            namee.addEventListener('keypress', addNameListWithKeyboard)
+                // let btnRandomList = document.getElementById('btn-aleatoire');
+
+        })
+        .catch(function(err) {
+            console.log('Failed to fetch page: ', err);
+        });
+})
+
+
+
+mainContent.addEventListener('click', (e) => {
+    if (e.target.id == "btn-aleatoire") {
+        console.log(e.target)
+        fetch('randomList.html')
+            .then(function(response) {
+                return response.text();
+            })
+            .then(function(html) {
+                let mainContent = document.getElementById('main-content')
+                mainContent.innerHTML = html.toString();
+                e.target.addEventListener('click', getRandomName)
+
+
+            })
+            .catch(function(err) {
+                console.log('Failed to fetch page: ', err);
+            });
+    }
+})
+
+
+
+// window.addEventListener("DOMContentLoaded", () => {
+//     fetch('randomGroup.html')
+//         .then(function(response) {
+//             return response.text();
+//         })
+//         .then(function(html) {
+//             let mainContent = document.getElementById('main-content')
+//             let addToList = document.getElementById('ajout-liste')
+//             mainContent.innerHTML = html.toString();
+//             addToList.addEventListener('click', addName)
+
+
+//         })
+//         .catch(function(err) {
+//             console.log('Failed to fetch page: ', err);
+//         });
+// })
+
+// window.addEventListener("DOMContentLoaded", () => {
+//     fetch('lightbox.html')
+//         .then(function(response) {
+//             return response.text();
+//         })
+//         .then(function(html) {
+//             let mainContent = document.getElementById('main-content')
+//             let addToList = document.getElementById('ajout-liste')
+//             mainContent.innerHTML = html.toString();
+//             addToList.addEventListener('click', addName)
+
+
+//         })
+//         .catch(function(err) {
+//             console.log('Failed to fetch page: ', err);
+//         });
+// })
+
+
+// namee.addEventListener('keypress', addNameListWithKeyboard)
+
+// function addNameListWithKeyboard(input) {
+//     if (input.keyCode == 13) {
+//         addName()
+//     }
+// }
+
+// function shuffleArray(arr) {
+//     arr.sort(() => Math.random() - 0.5);
+// }
+
+// // ======================= Ajout aléatoire de groupes =======================//
+// let inputNumber = document.getElementById('nb-groupe');
+// let listGroup = document.getElementById('liste-groupe');
+
+// document.getElementById('btn-display-lightbox').addEventListener('click', displayLightbox);
+// document.getElementById('btn-groupe').addEventListener('click', getGroup);
+
+function addName(namee) {
+
+    // console.log(namee)
+
 
     if (namee.value === tabBase[i]) {
         return alert('Vous avez dejà rentré ce nom !')
@@ -14,9 +121,10 @@ function addName() {
     if (!namee.value.trim()) {
         return alert('Veuillez rentrer un nom !')
     }
-
+    let listName = document.getElementById('liste-ajout');
     tabBase.push(namee.value)
     let itemName = document.createElement('li');
+    // console.log(itemName)
     itemName.classList.add('nom');
     listName.appendChild(itemName);
     itemName.innerText = namee.value;
@@ -25,12 +133,12 @@ function addName() {
         this.remove()
         for (const key in tabBase) {
             if (tabBase.hasOwnProperty(key)) {
-                console.log(this.innerText)
+                // console.log(this.innerText)
                 const value = tabBase[key];
 
                 if (this.innerText == value) {
                     tabBase.splice(key, 1)
-                    console.log(tabBase)
+                        // console.log(tabBase)
                 }
             }
         }
@@ -39,66 +147,65 @@ function addName() {
     return namee.value = ''
 }
 
-namee.addEventListener('keypress', addNameListWithKeyboard)
-
 function addNameListWithKeyboard(input) {
     if (input.keyCode == 13) {
-        addName()
+        addName(this)
     }
 }
 
-function shuffleArray(arr) {
-    arr.sort(() => Math.random() - 0.5);
-}
 
-// ======================= Ajout aléatoire de groupes =======================//
-let inputNumber = document.getElementById('nb-groupe');
-let listGroup = document.getElementById('liste-groupe');
+// function displayLightbox() {
+//     document.getElementById('lightbox').style.display = "block";
+// }
 
-document.getElementById('btn-groupe').addEventListener('click', getGroup);
 
-function getGroup() {
-    let tabBis = Object.values(tabBase);
-    shuffleArray(tabBis);
 
-    if (!inputNumber.value) {
-        return alert('Combien de personnes par groupe veux-tu ?')
-    }
+// function getGroup() {
+//     console.log(inputNumber.value)
+//     document.getElementById('lightbox').style.display = "none";
+//     let tabBis = Object.values(tabBase);
+//     shuffleArray(tabBis);
 
-    if (!tabBis.length) {
-        return alert('Les groupes sont faits')
-    }
+//     if (!inputNumber.value) {
+//         return alert('Combien de personnes par groupe veux-tu ?')
+//     }
 
-    if (tabBis.length % 2 != 0) {
-        let itemName = document.createElement('li');
-        listGroup.appendChild(itemName);
-        itemName.innerText = tabBis.splice(tabBis.length - inputNumber.value).concat(tabBis.splice(-1));
-    }
+//     if (!tabBis.length) {
+//         return alert('Les groupes sont faits')
+//     }
 
-    do {
-        let itemName = document.createElement('li');
-        listGroup.appendChild(itemName);
-        itemName.innerText = tabBis.splice(0, inputNumber.value).join(', ');
-    } while (tabBis.length > 0);
-}
+//     if (tabBis.length % 2 != 0) {
+//         let itemName = document.createElement('li');
+//         listGroup.appendChild(itemName);
+//         itemName.innerText = tabBis.splice(tabBis.length - inputNumber.value).concat(tabBis.splice(-1));
+//     }
 
-inputNumber.addEventListener('keypress', getGroupkeyboard);
+//     do {
+//         let itemName = document.createElement('li');
+//         listGroup.appendChild(itemName);
+//         itemName.innerText = tabBis.splice(0, inputNumber.value).join(', ');
+//     } while (tabBis.length > 0);
+// }
 
-function getGroupkeyboard(input) {
-    if (input.keyCode == 13) {
-        getGroup()
-    }
-}
+// inputNumber.addEventListener('keypress', getGroupkeyboard);
 
-// ======================= Ajout liste aléatoire =======================//
-document.getElementById('btn-aleatoire').addEventListener('click', getRandomName)
-let listRandomName = document.getElementById('liste-aleatoire');
+// function getGroupkeyboard(input) {
+//     if (input.keyCode == 13) {
+//         getGroup()
+//     }
+// }
+
+// // ======================= Ajout liste aléatoire =======================//
+// document.getElementById('btn-aleatoire').addEventListener('click', getRandomName)
+// let listRandomName = document.getElementById('liste-aleatoire');
 
 function getRandomName() {
+    console.log('Hello')
     let randomTab = Object.values(tabBase);
     shuffleArray(tabBase);
 
     for (i = 0; i < tabBase.length; i++) {
+        let listRandomName = document.getElementById('liste-aleatoire');
         let randomName = document.createElement('li');
         randomName.classList.add('groupList')
         listRandomName.appendChild(randomName);
