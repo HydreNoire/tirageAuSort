@@ -21,7 +21,7 @@ function addName() {
     listName.appendChild(itemName);
     itemName.innerText = namee.value;
 
-    itemName.addEventListener('click', function() {
+    itemName.addEventListener('click', function () {
         this.remove()
         for (const key in tabBase) {
             if (tabBase.hasOwnProperty(key)) {
@@ -71,15 +71,19 @@ function getGroup() {
 
     if (tabBis.length % 2 != 0) {
         let itemName = document.createElement('li');
+        itemName.classList.add('groupLi');
         listGroup.appendChild(itemName);
-        itemName.innerText = tabBis.splice(tabBis.length - inputNumber.value).concat(tabBis.splice(-1));
+        itemName.innerHTML = tabBis.splice(tabBis.length - inputNumber.value).concat(tabBis.splice(-1)).join("<br />");
     }
 
     do {
         let itemName = document.createElement('li');
+        itemName.classList.add('groupLi');
         listGroup.appendChild(itemName);
-        itemName.innerText = tabBis.splice(0, inputNumber.value).join(', ');
+        itemName.innerHTML = tabBis.splice(0, inputNumber.value).join("<br />");
     } while (tabBis.length > 0);
+
+    document.getElementById('btn-groupe').setAttribute('disabled', 'disabled');
 }
 
 inputNumber.addEventListener('keypress', getGroupkeyboard);
@@ -105,4 +109,6 @@ function getRandomName() {
         randomName.innerText = tabBase[i];
     }
     randomTab.splice(0, randomTab.length)
+
+    document.getElementById("btn-aleatoire").setAttribute('disabled', 'disabled');
 }
