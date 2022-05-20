@@ -15,15 +15,14 @@
 
 <body>
     <header>
-        <h1>Tirage au sort</h1>
+        <h1>Tirage <br> au sort</h1>
     </header>
 
     <main>
-        <section>
-            <article>
-                <label for="name">Nom :</label>
-                <input type="text" name="" id="nom-input" value="">
-                <button id="ajout-liste">Ajouter</button>
+        <section class="ajout">
+            <article class="ajout-nom">
+                <input type="text" placeholder="Ajouter..." id="nom-input" value="">
+                <button id="ajout-liste">+</button>
             </article>
 
             <ol id="liste-ajout">
@@ -31,20 +30,20 @@
 
         </section>
 
-        <section>
+        <section class="list-random-group">
             <article>
-                <button id="btn-aleatoire">Liste aléatoire</button>
+                <button id="btn-aleatoire">Générer une liste aléatoire</button>
                 <ol id="liste-aleatoire">
 
                 </ol>
             </article>
 
             <article>
-                <button id="btn-groupe">Créer Groupe</button>
+                <button id="btn-groupe">Générer des groupes</button>
                 <input type="number" name="" id="nb-groupe" min="1" max="5">
-                <div id="liste-groupe">
+                <ol id="liste-groupe">
 
-                </div>
+                </ol>
             </article>
         </section>
 

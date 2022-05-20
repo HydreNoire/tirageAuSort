@@ -1,0 +1,137 @@
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+header {
+    flex-basis: 25%
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: end;
+    flex-basis: 75%;
+    padding-right: 15rem;
+}
+
+h1 {
+    font-size: 8rem;
+    font-weight: 400;
+    color: var(--blueColor);
+    line-height: 5rem;
+    margin: 1rem;
+}
+
+.ajout,
+.list-random-group {
+    width: 55%;
+}
+
+.ajout {
+    padding-bottom: 1rem;
+}
+
+.ajout-nom {
+    border: 1px solid var(--blueColor);
+    padding: 1.5rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#nom-input {
+    margin: 0;
+    padding: 0;
+    border: none;
+    color: var(--blueColor);
+    font-size: 1.5rem;
+    width: 500px;
+}
+
+#nom-input:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+#nom-input::placeholder {
+    color: var(--blueColor);
+}
+
+#ajout-liste {
+    margin: 0;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: none;
+    color: var(--blueColor);
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+#liste-ajout {
+    margin: 0;
+    padding: 0;
+}
+
+.nom {
+    list-style: none;
+    border: 1px solid var(--blueColor);
+    border-top: none;
+    font-size: 1.3rem;
+    color: var(--blueColor);
+    padding: 1.5rem 1rem;
+    margin: 0;
+    cursor: pointer;
+    position: relative;
+}
+
+.nom:hover {
+    background-color: rgba(59, 0, 254, 1);
+    color: white;
+}
+
+.nom::after {
+    content: '+';
+    transform: rotate(45deg);
+    font-weight: 600;
+    position: absolute;
+    right: 17px;
+}
+
+.list-random-group {
+    display: flex;
+    justify-content: space-between;
+}
+
+#btn-aleatoire,
+#btn-groupe {
+    padding: 1.5rem 2rem;
+    background-color: transparent;
+    border: 1px solid var(--blueColor);
+    color: var(--blueColor);
+    font-size: 1.1rem;
+    width: 330px;
+    cursor: pointer;
+}
+
+#btn-aleatoire:hover,
+#btn-groupe:hover {
+    color: white;
+    background-color: var(--blueColor);
+}
+
+.groupList {
+    color: var(--blueColor);
+}
+
+.groupList::marker {
+    content: '$';
+}
+
+/* Ce que je ne veux pas voir */
+#nb-groupe {
+    display: none;
+}
