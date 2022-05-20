@@ -1,7 +1,7 @@
 @import 'martial.css';
 @import 'lise.css';
 
-li:hover {
-    background-color: grey;
-    cursor: pointer;
+body {
+    --blueColor: #440BFA;
+    font-family: Helvetica, sans-serif;
 }

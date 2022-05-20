@@ -17,6 +17,7 @@ function addName() {
 
     tabBase.push(namee.value)
     let itemName = document.createElement('li');
+    itemName.classList.add('nom');
     listName.appendChild(itemName);
     itemName.innerText = namee.value;
 
@@ -99,7 +100,7 @@ function getRandomName() {
 
     for (i = 0; i < tabBase.length; i++) {
         let randomName = document.createElement('li');
-        randomName.classList.add('nom');
+        randomName.classList.add('groupList')
         listRandomName.appendChild(randomName);
         randomName.innerText = tabBase[i];
     }
