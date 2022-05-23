@@ -16,9 +16,9 @@ window.addEventListener("DOMContentLoaded", () => {
             mainContent.innerHTML = html.toString();
             let addToList = document.getElementById('ajout-liste')
             let namee = document.getElementById('nom-input')
-            let listName = document.getElementById('liste-ajout');
+            var listRandomName = document.getElementById('liste-aleatoire');
             addToList.addEventListener('click', function() {
-                addName(namee)
+                addName()
             })
             namee.addEventListener('keypress', addNameListWithKeyboard)
                 // let btnRandomList = document.getElementById('btn-aleatoire');
@@ -33,15 +33,37 @@ window.addEventListener("DOMContentLoaded", () => {
 
 mainContent.addEventListener('click', (e) => {
     if (e.target.id == "btn-aleatoire") {
-        console.log(e.target)
+
         fetch('randomList.html')
             .then(function(response) {
+                // 
                 return response.text();
             })
             .then(function(html) {
+                // console.log(html)
                 let mainContent = document.getElementById('main-content')
+           
+
+                // console.log(mainContent.contains(ol))
+                
+                e.target.addEventListener('click', function() {
+                    console.log('Hello')
+                let randomTab = Object.values(tabBase);
+                shuffleArray(tabBase);
                 mainContent.innerHTML = html.toString();
-                e.target.addEventListener('click', getRandomName)
+
+                for (i = 0; i < tabBase.length; i++) {
+                    
+                    let listRandomName = document.getElementById('liste-aleatoire');
+                    let randomName = document.createElement('li');
+                    randomName.classList.add('groupList')
+                    listRandomName.appendChild(randomName);
+                    randomName.innerText = tabBase[i];
+                }
+                randomTab.splice(0, randomTab.length)
+
+                // document.getElementById("btn-aleatoire").setAttribute('disabled', 'disabled');
+                            })
 
 
             })
@@ -49,12 +71,21 @@ mainContent.addEventListener('click', (e) => {
                 console.log('Failed to fetch page: ', err);
             });
     }
+
+    if(e.target == "btn-display-lightbox") {
+        document.getElementById('btn-display-lightbox').addEventListener('click', function() {
+            
+        });
+        
+    }
 })
 
 
 
-// window.addEventListener("DOMContentLoaded", () => {
-//     fetch('randomGroup.html')
+// mainContent.addEventListener('click', (e) => {
+   
+//     if (e.target.id == "btn-aleatoire") {
+//          fetch('randomGroup.html')
 //         .then(function(response) {
 //             return response.text();
 //         })
@@ -98,15 +129,15 @@ mainContent.addEventListener('click', (e) => {
 //     }
 // }
 
-// function shuffleArray(arr) {
-//     arr.sort(() => Math.random() - 0.5);
-// }
+function shuffleArray(arr) {
+    arr.sort(() => Math.random() - 0.5);
+}
 
 // // ======================= Ajout aléatoire de groupes =======================//
 // let inputNumber = document.getElementById('nb-groupe');
 // let listGroup = document.getElementById('liste-groupe');
 
-// document.getElementById('btn-display-lightbox').addEventListener('click', displayLightbox);
+
 // document.getElementById('btn-groupe').addEventListener('click', getGroup);
 
 function addName(namee) {
@@ -153,10 +184,27 @@ function addNameListWithKeyboard(input) {
     }
 }
 
+function getRandomName() {
+    console.log('Hello')
+    let randomTab = Object.values(tabBase);
+    shuffleArray(tabBase);
 
-// function displayLightbox() {
-//     document.getElementById('lightbox').style.display = "block";
-// }
+    for (i = 0; i < tabBase.length; i++) {
+        let listRandomName = document.getElementById('liste-aleatoire');
+        let randomName = document.createElement('li');
+        randomName.classList.add('groupList')
+        listRandomName.appendChild(randomName);
+        randomName.innerText = tabBase[i];
+    }
+    randomTab.splice(0, randomTab.length)
+
+    document.getElementById("btn-aleatoire").setAttribute('disabled', 'disabled');
+}
+
+
+function displayLightbox() {
+    document.getElementById('lightbox').style.display = "block";
+}
 
 
 
@@ -199,19 +247,3 @@ function addNameListWithKeyboard(input) {
 // document.getElementById('btn-aleatoire').addEventListener('click', getRandomName)
 // let listRandomName = document.getElementById('liste-aleatoire');
 
-function getRandomName() {
-    console.log('Hello')
-    let randomTab = Object.values(tabBase);
-    shuffleArray(tabBase);
-
-    for (i = 0; i < tabBase.length; i++) {
-        let listRandomName = document.getElementById('liste-aleatoire');
-        let randomName = document.createElement('li');
-        randomName.classList.add('groupList')
-        listRandomName.appendChild(randomName);
-        randomName.innerText = tabBase[i];
-    }
-    randomTab.splice(0, randomTab.length)
-
-    document.getElementById("btn-aleatoire").setAttribute('disabled', 'disabled');
-}

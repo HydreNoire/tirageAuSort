@@ -152,6 +152,7 @@ h1 {
     width: 89vw;
     max-height: 500px;
     list-style: none;
+    align-items: flex-end;
 }
 
 .groupList {
