@@ -1,10 +1,9 @@
     @import 'martial.css';
     @import 'lise.css';
-
     * {
         font-family: Helvetica, sans-serif;
     }
-
+    
     body {
         --blueColor: #440bfa;
         position: relative;
@@ -12,9 +11,8 @@
         padding: 0;
         box-sizing: border-box;
     }
-
     /* Lightbox pop-up */
-
+    
     #lightbox {
         height: 100vh;
         position: absolute;
@@ -24,7 +22,7 @@
         z-index: 5;
         backdrop-filter: blur(4px);
     }
-
+    
     #popup {
         width: 30%;
         height: 40%;
@@ -39,27 +37,27 @@
         align-items: center;
         justify-content: space-between;
     }
-
+    
     h4 {
         text-align: center;
         font-weight: 200;
     }
-
+    
     #popup button {
         background-color: transparent;
         border: none;
         cursor: pointer;
         opacity: 0.9;
     }
-
+    
     .d-none {
         display: none;
     }
-
+    
     .d-block {
         display: block;
     }
-
+    
     #nb-groupe {
         background-color: transparent;
         border: 1px solid white;
@@ -67,17 +65,17 @@
         color: white;
         font-size: 20px;
     }
-
+    
     #nb-groupe:focus {
         outline: none;
     }
-
+    
     input::-webkit-outer-spin-button,
     input::-webkit-inner-spin-button {
         -webkit-appearance: none;
         margin: 0;
     }
-
+    
     input[type=number] {
         -moz-appearance: textfield;
         /* Firefox */

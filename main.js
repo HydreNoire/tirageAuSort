@@ -16,17 +16,27 @@ window.addEventListener("DOMContentLoaded", () => {
             mainContent.innerHTML = html.toString();
             let addToList = document.getElementById('ajout-liste')
             let namee = document.getElementById('nom-input')
-            var listRandomName = document.getElementById('liste-aleatoire');
+            let btnLightbox = document.getElementById('btn-display-lightbox')
+
+            // var listRandomName = document.getElementById('liste-aleatoire');
+            // let lightbox = document.getElementById('lightbox')
+            // console.log(lightbox)
+            btnLightbox.addEventListener('click', function() {
+                displayLightbox()
+            })
             addToList.addEventListener('click', function() {
                 addName()
+
             })
             namee.addEventListener('keypress', addNameListWithKeyboard)
-                // let btnRandomList = document.getElementById('btn-aleatoire');
+
+            // let btnRandomList = document.getElementById('btn-aleatoire');
 
         })
-        .catch(function(err) {
-            console.log('Failed to fetch page: ', err);
-        });
+
+    .catch(function(err) {
+        console.log('Failed to fetch page: ', err);
+    });
 })
 
 
@@ -36,34 +46,34 @@ mainContent.addEventListener('click', (e) => {
 
         fetch('randomList.html')
             .then(function(response) {
-                // 
+                console.log("J'suis là enfaite")
                 return response.text();
             })
             .then(function(html) {
                 // console.log(html)
                 let mainContent = document.getElementById('main-content')
-           
+
 
                 // console.log(mainContent.contains(ol))
-                
+
                 e.target.addEventListener('click', function() {
                     console.log('Hello')
-                let randomTab = Object.values(tabBase);
-                shuffleArray(tabBase);
-                mainContent.innerHTML = html.toString();
+                    let randomTab = Object.values(tabBase);
+                    shuffleArray(tabBase);
+                    mainContent.innerHTML = html.toString();
 
-                for (i = 0; i < tabBase.length; i++) {
-                    
-                    let listRandomName = document.getElementById('liste-aleatoire');
-                    let randomName = document.createElement('li');
-                    randomName.classList.add('groupList')
-                    listRandomName.appendChild(randomName);
-                    randomName.innerText = tabBase[i];
-                }
-                randomTab.splice(0, randomTab.length)
+                    for (i = 0; i < tabBase.length; i++) {
 
-                // document.getElementById("btn-aleatoire").setAttribute('disabled', 'disabled');
-                            })
+                        let listRandomName = document.getElementById('liste-aleatoire');
+                        let randomName = document.createElement('li');
+                        randomName.classList.add('groupList')
+                        listRandomName.appendChild(randomName);
+                        randomName.innerText = tabBase[i];
+                    }
+                    randomTab.splice(0, randomTab.length)
+
+                    // document.getElementById("btn-aleatoire").setAttribute('disabled', 'disabled');
+                })
 
 
             })
@@ -71,36 +81,71 @@ mainContent.addEventListener('click', (e) => {
                 console.log('Failed to fetch page: ', err);
             });
     }
-
-    if(e.target == "btn-display-lightbox") {
-        document.getElementById('btn-display-lightbox').addEventListener('click', function() {
-            
-        });
-        
-    }
 })
 
 
+// document.getElementById('lightbox').addEventListener('click', displayLightbox)
 
-// mainContent.addEventListener('click', (e) => {
-   
-//     if (e.target.id == "btn-aleatoire") {
-//          fetch('randomGroup.html')
-//         .then(function(response) {
-//             return response.text();
-//         })
-//         .then(function(html) {
-//             let mainContent = document.getElementById('main-content')
-//             let addToList = document.getElementById('ajout-liste')
-//             mainContent.innerHTML = html.toString();
-//             addToList.addEventListener('click', addName)
+function displayLightbox() {
+    document.getElementById('lightbox').style.display = "block";
+    console.log(lightbox)
+}
 
 
-//         })
-//         .catch(function(err) {
-//             console.log('Failed to fetch page: ', err);
-//         });
-// })
+
+lightbox.addEventListener('click', (e) => {
+    // console.log(e.target.id = "displayGroup")
+    if (e.target.id == "displayGroup") {
+        lightbox.style.display = "none";
+
+        fetch('randomGroup.html')
+            .then(function(response) {
+                // console.log(response)
+                return response.text();
+            })
+            .then(function(html) {
+                let mainContent = document.getElementById('main-content')
+                let listGroup = document.getElementById('liste-groupe')
+                console.log(e.target)
+                e.target.addEventListener('click', function() {
+
+                    console.log('test')
+                    console.log(inputNumber.value)
+                    document.getElementById('lightbox').style.display = "none";
+                    let tabBis = Object.values(tabBase);
+                    shuffleArray(tabBis);
+
+                    if (!inputNumber.value) {
+                        return alert('Combien de personnes par groupe veux-tu ?')
+                    }
+
+                    // if (!tabBis.length) {
+                    //     return alert('Les groupes sont faits')
+                    // }
+
+                    if (tabBis.length % 2 != 0) {
+                        let itemName = document.createElement('li');
+                        listGroup.appendChild(itemName);
+                        itemName.innerText = tabBis.splice(tabBis.length - inputNumber.value).concat(tabBis.splice(-1));
+                    }
+
+                    do {
+                        let itemName = document.createElement('li');
+                        listGroup.appendChild(itemName);
+                        itemName.innerText = tabBis.splice(0, inputNumber.value).join(', ');
+                    } while (tabBis.length > 0);
+
+                })
+                mainContent.innerHTML = html.toString();
+            })
+
+
+        .catch(function(err) {
+            console.log('Failed to fetch page: ', err);
+        });
+    }
+})
+
 
 // window.addEventListener("DOMContentLoaded", () => {
 //     fetch('lightbox.html')
@@ -202,9 +247,7 @@ function getRandomName() {
 }
 
 
-function displayLightbox() {
-    document.getElementById('lightbox').style.display = "block";
-}
+
 
 
 
@@ -246,4 +289,3 @@ function displayLightbox() {
 // // ======================= Ajout liste aléatoire =======================//
 // document.getElementById('btn-aleatoire').addEventListener('click', getRandomName)
 // let listRandomName = document.getElementById('liste-aleatoire');
-
